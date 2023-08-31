@@ -1,11 +1,11 @@
 const themeButton = document.querySelector('.theme-button')
 
-if (localStorage.getItem('theme') == 'dark') {
+if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
     themeButton.classList.add('theme-button_active')
     document.body.classList.add('dark')
 }
 
-if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+if (localStorage.getItem('theme') == 'dark') {
     themeButton.classList.add('theme-button_active')
     document.body.classList.add('dark')
 }
