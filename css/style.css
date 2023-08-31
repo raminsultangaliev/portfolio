@@ -5,23 +5,41 @@
     --blackest: #000;
     --black: #171718;
     --black-border: #26292d;
+    --dark-gray: #272727;
     --white: #fff;
     --purple: #5c62ec;
+    --red: #e34234;
 
     --dark-bg: var(--black);
     --dark-border: var(--black-border);
-    --header-text: var(--white);
     --black-text: var(--black);
+    --header-title: var(--purple);
+    --header-text: var(--white);
+
+    /* Light mode */
+    --page-bg: var(--white);
+    --text-color: var(--black);
     --accent: var(--purple);
+    --box-shadow: 0px 5px 35px 0px rgba(0, 0, 0, 0.25);
 }
 
-html, body {
+.dark {
+    /* Dark mode */
+    --page-bg: var(--dark-gray);
+    --text-color: var(--white);
+    --accent: var(--red);
+    --box-shadow: 0px 5px 35px 0px rgba(0, 0, 0, 0.8);
+}
+
+html,
+body {
     font-family: "DM Sans", sans-serif;
     letter-spacing: -0.5px;
-    color: var(--black-text);
-    height: 100%;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
+    background-color: var(--page-bg);
+    color: var(--text-color);
 }
 
 .container {
@@ -41,7 +59,7 @@ html, body {
 
 .nav-row {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
     gap: 20px 30px;
     flex-wrap: wrap;
@@ -51,6 +69,7 @@ html, body {
     color: var(--header-text);
     font-size: 24px;
     font-family: "Poppins", sans-serif;
+    margin-right: auto;
 }
 
 .logo strong {
@@ -86,10 +105,49 @@ html, body {
     display: block;
     height: 2px;
     width: 100%;
-    background-color: var(--accent);
+    background-color: var(--header-title);
     position: absolute;
     left: 0;
     top: 100%;
+}
+
+/* Theme button */
+
+.theme-button {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    order: 1;
+    width: 51px;
+    height: 26px;
+    padding: 5px;
+    background-color: #272727;
+    border-radius: 58px;
+}
+
+.theme-button:focus {
+    outline: 2px dashed white;
+}
+
+.theme-button::before {
+    content: "";
+    position: absolute;
+    top: 1px;
+    left: 1px;
+    display: block;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: var(--white);
+    transition: left 0.3s ease-in-out;
+}
+
+.theme-button_active::before {
+    left: 26px;
+}
+
+.theme-button__icon {
+    position: relative;
 }
 
 /* Header */
@@ -127,7 +185,7 @@ html, body {
 
 .header__title em {
     font-style: normal;
-    color: var(--accent);
+    color: var(--header-title);
 }
 
 .header__text {
@@ -145,7 +203,7 @@ html, body {
     height: 48px;
     padding: 12px 28px;
     border-radius: 5px;
-    background-color: var(--accent);
+    background-color: var(--header-title);
     color: var(--white);
     letter-spacing: 0.15px;
     font-size: 16px;
@@ -185,7 +243,7 @@ html, body {
     max-width: 370px;
     background-color: var(--white);
     border-radius: 10px;
-    box-shadow: 0px 5px 35px 0px rgba(0, 0, 0, 0.25);
+    box-shadow: var(--box-shadow);
 }
 
 .project:hover .project__title,
@@ -228,7 +286,7 @@ html, body {
     column-gap: 30px;
 }
 
-.social__item a{
+.social__item a {
     display: flex;
 }
 
@@ -254,7 +312,7 @@ html, body {
     max-width: 100%;
     margin-bottom: 40px;
     border-radius: 10px;
-    box-shadow: 0px 5px 35px 0px rgba(0, 0, 0, 0.25);
+    box-shadow: var(--box-shadow);
 }
 
 .project-details__description {
@@ -314,11 +372,19 @@ html, body {
 }
 
 @media screen and (max-width: 620px) {
-    .header{
+    .nav-row {
+        justify-content: space-between;
+    }
+
+    .theme-button {
+        order: 0;
+    }
+
+    .header {
         min-height: unset;
     }
 
-    .header__title{
+    .header__title {
         font-size: 30px;
     }
 
@@ -326,7 +392,7 @@ html, body {
         font-size: 40px;
     }
 
-    .section{
+    .section {
         padding: 40px 0;
     }
 
@@ -334,23 +400,23 @@ html, body {
         margin-bottom: 40px;
     }
 
-    .footer{
+    .footer {
         padding: 40px 0 30px;
     }
 
-    .footer__wrapper{
+    .footer__wrapper {
         row-gap: 20px;
     }
 
-    .social{
+    .social {
         column-gap: 20px;
     }
 
-    .social__item{
+    .social__item {
         width: 28px;
     }
 
-    .content-list__title{
+    .content-list__title {
         margin-bottom: 10px;
         font-size: 30px;
     }
